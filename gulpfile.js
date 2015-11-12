@@ -127,6 +127,7 @@ gulp.task('compass', function () {
         .pipe(compass({
                 sass: 'components/sass',
                 image: outputDir + 'images',
+                css: outputDir + 'css',
                 style: sassStyle
             })
             .on('error', gutil.log))

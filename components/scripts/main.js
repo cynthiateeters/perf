@@ -179,7 +179,7 @@ function getAdj(x) {
     case 'color':
         var colors = ['blue', 'green', 'purple', 'grey', 'scarlet', 'NeonGreen',
             'NeonBlue', 'NeonPink', 'HotPink', 'pink', 'black', 'red',
-						'maroon', 'silver', 'golden', 'yellow', 'orange', 'mustard', 'plum',
+            'maroon', 'silver', 'golden', 'yellow', 'orange', 'mustard', 'plum',
             'violet', 'cerulean', 'brown', 'lavender', 'violet', 'magenta',
             'chestnut', 'rosy', 'copper', 'crimson', 'teal', 'indigo', 'navy',
             'azure', 'periwinkle', 'brassy', 'verdigris', 'veridian', 'tan',
@@ -513,7 +513,7 @@ var resizePizzas = function (size) {
     // Changes the value for the size of the pizza above the slider
     slider.innerHTML = SLIDERLABEL[size];
 
-    // Iterates through pizza elements on the page and changes their widths
+    // Iterates through pizza elements on the page and changes their % widths
     var width = PIZZAWIDTH[size];
     var localContainer = container;
     for (var i = 0; i < container.length; i++) {
@@ -568,6 +568,7 @@ function updatePositions() {
     var phaseArr = [];
     var i, moveVal;
 
+    // put calculation of phase into lookup for later use
     for (i = 0; i < 5; i++) {
         phaseArr.push(100 * Math.sin(bodyScrollTop + (i)));
     }
@@ -591,7 +592,6 @@ function updatePositions() {
 
 // runs updatePositions on scroll
 //window.addEventListener('scroll', updatePositions);
-
 //http://www.html5rocks.com/en/tutorials/speed/animations/
 function onScroll() {
     latestKnownScrollY = window.scrollY;
