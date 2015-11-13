@@ -14,16 +14,24 @@ http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
 Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
+
+Modified 2015-11-12 by Cynthia Teeters
+Resources:
+  1) "Effective Optimizations For 60 FPS" by Mark Nguyen
+      https://goo.gl/YnA8nS
+  2) "High Performance JavaScript" by Nickolas C. Jakas
 */
 // Globals
-var items;
-var container;
+var MovingPizzas;
+var PizzasCount;
+
+var Container;
 var PIZZAWIDTH = [];
 PIZZAWIDTH[1] = '25%';
 PIZZAWIDTH[2] = '33.33%';
 PIZZAWIDTH[3] = '50%';
 //
-var slider;
+var Slider;
 var SLIDERLABEL = [];
 SLIDERLABEL[1] = 'Small';
 SLIDERLABEL[2] = 'Medium';
@@ -179,7 +187,7 @@ function getAdj(x) {
     case 'color':
         var colors = ['blue', 'green', 'purple', 'grey', 'scarlet', 'NeonGreen',
             'NeonBlue', 'NeonPink', 'HotPink', 'pink', 'black', 'red',
-						'maroon', 'silver', 'golden', 'yellow', 'orange', 'mustard', 'plum',
+            'maroon', 'silver', 'golden', 'yellow', 'orange', 'mustard', 'plum',
             'violet', 'cerulean', 'brown', 'lavender', 'violet', 'magenta',
             'chestnut', 'rosy', 'copper', 'crimson', 'teal', 'indigo', 'navy',
             'azure', 'periwinkle', 'brassy', 'verdigris', 'veridian', 'tan',
@@ -506,17 +514,31 @@ var pizzaElementGenerator = function (i) {
     return pizzaContainer;
 };
 
-// resizePizzas(size) is called when the slider in the 'Our Pizzas' section of the website moves.
+// resizePizzas(size) is called when the Slider in the 'Our Pizzas' section of the website moves.
+// 2015-11-12 CLT - Made major modifications this function for optimization.
+//
+//
+// Acessing the DOM is costly in time.
+//
+//
+// New Logic:
+// 1) Slider in browser returns value of 1, 2, or 3, which represents small, medium, or Large
+// 2) Change the label using a lookup table
+// 3) For every pizza, change the size of its image using % instead
 var resizePizzas = function (size) {
     window.performance.mark('mark_start_resize'); // User Timing API function
 
-    // Changes the value for the size of the pizza above the slider
-    slider.innerHTML = SLIDERLABEL[size];
+    // Changes the browser label for the size of the pizza above the Slider
+    // 2015-11-12 CLT - changed costly switch statement to a simple lookup
+    Slider.innerHTML = SLIDERLABEL[size];
 
     // Iterates through pizza elements on the page and changes their % widths
+    //
+    // FYI - Using local variables instead of global saves time traversing
+    // the javascript scope chain.
     var width = PIZZAWIDTH[size];
-    var localContainer = container;
-    for (var i = 0; i < container.length; i++) {
+    var localContainer = Container;
+    for (var i = 0; i < Container.length; i++) {
         localContainer[i].style.width = width;
     }
 
@@ -564,19 +586,20 @@ function updatePositions() {
     ticking = false;
     window.performance.mark('mark_start_frame');
 
-    var bodyScrollTop = document.body.scrollTop / 1250;
+    var bodyScrollTop = latestKnownScrollY / 1250;
     var phaseArr = [];
     var i, moveVal;
 
+    // put calculation of phase into array for later use
     for (i = 0; i < 5; i++) {
         phaseArr.push(100 * Math.sin(bodyScrollTop + (i)));
     }
 
     //console.log(phaseArr);
-    for (i = 0; i < items.length; i++) {
-        moveVal = items[i].basicLeft + phaseArr[i % 5];
-        //items[i].style.left = moveVal + 'px';
-        items[i].style.transform = 'translateX(' + moveVal + 'px)';
+    for (i = 0; i < PizzasCount; i++) {
+        moveVal = MovingPizzas[i].basicLeft + phaseArr[i % 5];
+        //MovingPizzas[i].style.left = moveVal + 'px';
+        MovingPizzas[i].style.transform = 'translateX(' + moveVal + 'px)';
     }
 
     // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -614,9 +637,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     var cols = Math.ceil(w / s);
     var rows = Math.ceil(h / s);
-    var count = rows * cols;
+    PizzasCount = rows * cols;
 
-    for (var i = 0; i < count; i++) {
+    for (var i = 0; i < PizzasCount; i++) {
         var elem = document.createElement('img');
         elem.className = 'mover';
         elem.src = 'images/pizza.png';
@@ -628,10 +651,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Set the following as global to be used in resizePizzas
-    container = document.getElementsByClassName('randomPizzaContainer');
-    slider = document.getElementById('pizzaSize');
+    Container = document.getElementsByClassName('randomPizzaContainer');
+    Slider = document.getElementById('pizzaSize');
 
     // Set the following as global to be used in updatePositions
-    items = document.getElementsByClassName('mover');
+    MovingPizzas = document.getElementsByClassName('mover');
     updatePositions();
 });

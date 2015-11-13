@@ -32,7 +32,11 @@ form {
 .mover {
   position: fixed;
   width: 256px;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   z-index: -1;
 }
 

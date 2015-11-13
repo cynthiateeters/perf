@@ -7,197 +7,23 @@
     <meta name="author" content="Cynthia Teeters">
     <title>Cameron Pittman: Portfolio</title>
 
-    <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-
+<!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
 <!-- Opening the link https://fonts.googleapis.com/css?family=Open+Sans:400,700
  reveals the loading of a number of fonts associated with the "Open Sans" font family.
  Most of these (for example: cyrillic, greek, and vietamese extensions) are not needed. So, it will save
  considerable resources to only load the latin font for weights 400 and 700.
 -->
 
-
 <style>
-/* latin-ext */
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v13/u-WUoqrET9fUeobQW7jkRYX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzIjoYw3YTyktCCer_ilOlhE.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzBampu5_7CjHW5spxoeN3Vs.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
+/* minified version of open-sans.css */
+@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local('Open Sans'),local('OpenSans'),url(https://fonts.gstatic.com/s/opensans/v13/u-WUoqrET9fUeobQW7jkRYX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local('Open Sans'),local('OpenSans'),url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000}@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local('Open Sans Bold'),local('OpenSans-Bold'),url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzIjoYw3YTyktCCer_ilOlhE.woff2) format('woff2');unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local('Open Sans Bold'),local('OpenSans-Bold'),url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzBampu5_7CjHW5spxoeN3Vs.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000}
 
-html {
-  font-size: 100%;
-  overflow-y: scroll;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: none;
-}
-
-body {
-  margin: 0;
-  font: 0.875em / 1.61 'Open Sans', sans-serif;
-}
-
-body,
-button,
-input,
-select,
-textarea {
-  color: #333;
-}
-
-a {
-  color: #12C;
-}
-
-a:visited {
-  color: #61C;
-}
-
-a:focus {
-  outline: thin dotted;
-}
-
-a:hover,
-a:active {
-  color: #c00;
-  outline: 0;
-}
-
-b,
-strong {
-  font-weight: bold;
-}
-
-pre,
-code {
-  font: 1em monospace;
-}
-
-ul,
-ol {
-  margin: 1em 0;
-  padding: 0 0 0 20px;
-}
-
-img {
-  border: 0;
-  max-width: 100%;
-}
-
-body {
-  background: #fff;
-}
-
-header,
-footer,
-.container {
-  max-width: 45em;
-  margin: 0 auto;
-}
-
-header {
-  padding: 0 0.5em;
-  color: #C90B0B;
-}
-
-header img {
-  border-radius: 40px;
-  float: left;
-}
-
-header p {
-  font-size: 1.5em;
-  font-weight: bold;
-  padding-left: 4em;
-}
-
-header p span {
-  font-size: 0.8em;
-  font-weight: normal;
-}
-
-.hero {
-  padding: 2em;
-  background-color: #f8f8f8;
-  font-size: 1.2em;
-  border-bottom: 1px solid #ccc;
-  border-top: 1px solid #ccc;
-}
-
-.content {
-  padding: 1em 1em;
-}
-
-.content li {
-  list-style-type: none;
-  font-size: 1.1em;
-}
-
-li img {
-  float: left;
-  padding-right: 1em;
-}
-
-li p {
-  font-size: 0.9em;
-  font-style: italic;
-}
-
-footer {
-  padding: 0 0.5em;
-  border-top: 1px solid #ccc;
-}
-
-footer span {
-  float: right;
-  font-style: italic;
-}
-
-
-/* Smartphones (portrait) */
-
-@media only screen and (max-width: 480px) {
-  body {
-    font-size: 12px;
-  }
-  header p {
-    padding-left: 4.5em;
-  }
-}
-
+/* minified version of style.css */
+body,button,input,select,textarea{font-family:'Open Sans',sans-serif;color:#333}.hero,footer{border-top:1px solid #ccc}footer span,li p{font-style:italic}html{font-size:100%;overflow-y:scroll;-webkit-tap-highlight-color:transparent;-ms-text-size-adjust:100%;-webkit-text-size-adjust:none}body{margin:0;font-size:14px;line-height:1.61;font-weight:400;background:#fff}b,header p,strong{font-weight:700}a{color:#12C}a:visited{color:#61C}a:focus{outline:dotted thin}a:active,a:hover{color:#c00;outline:0}code,pre{font-family:monospace,monospace;font-size:1em}ol,ul{margin:1em 0;padding:0 0 0 20px}img{border:0;max-width:100%}.container,footer,header{max-width:45em;margin:0 auto}header{padding:0 .5em;color:#C90B0B}header img{border-radius:40px;float:left}header p{font-size:1.5em;padding-left:4em}header p span{font-size:.8em;font-weight:400}.hero{padding:2em;background-color:#f8f8f8;font-size:1.2em;border-bottom:1px solid #ccc}.content{padding:1em}.content li{list-style-type:none;font-size:1.1em}li img{float:left;padding-right:1em}li p{font-size:.9em}footer{padding:0 .5em}footer span{float:right}@media only screen and (max-width:480px){body{font-size:12px}header p{padding-left:4.5em}}
 
 </style>
     <link href="css/print.css" rel="stylesheet" media="print">
-
-
   </head>
-
   <body>
     <header>
       <a href="/"><img src="images/profilepic.jpg"></a>
@@ -240,18 +66,14 @@ footer span {
     <footer>
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
-
-
-
-        <script>
+    <script>
           (function(w,g){w['GoogleAnalyticsObject']=g;
           w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
 
           // TODO: replace with your Google Analytics profile ID.
           ga('create', 'UA-XXXX-Y');
           ga('send', 'pageview');
-        </script>
-
+    </script>
     <script async src="http://www.schedule-analytics.com/analytics.js"></script>
     <script>
     function logCRP() {
@@ -261,11 +83,9 @@ footer span {
       var stats = document.getElementById("crp-stats");
       stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
     }
-
     window.addEventListener("load", function(event) {
       logCRP();
     });
-
     </script>
   </body>
 </html>
