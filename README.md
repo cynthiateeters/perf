@@ -4,6 +4,22 @@ The challenge was to optimize this online portfolio for speed.
 
 In particular, optimize the critical rendering path and make index.html render as quickly as possible. Also, change how the little pizzas moved when scrolled in pizza.html so that there is no jank (a consistent 60 fps frame rate). Lastly, improve the resizing of the menu pizzas when a different pizza size is selected by a user changing the slider.
 
+## Use and Test Project
+
+To get a PageSpeed Insights score of 100/100, I have installed the production version at my website:
+
+ http://brainydesigns.net/perf
+
+ Please feel free to use and test the project from here.
+
+ ### Project Build Environment
+
+ Using Gulp to manage the builds, the project is separated into two different build branches: *development* and *production*. The difference is that the *production* directory contains minified html, css, and js files. The *development* directory has human-readable versions of these files.
+
+ __PLEASE NOTE:__ To make building the project with Gulp, the original directory structure was simplified. There is no longer a view subdirectory. This means that the style sheet for pizza.html is now style2.css.
+
+ Using the gulp-jshint, jshint-stylish, and gulp-csslint plugins, files revised to pass lint.
+
 ## Goals
 
 ### Part 1: Optimize PageSpeed Insights Score for index.html
@@ -43,7 +59,7 @@ Include a README.md file (this file) that details all steps required to successf
 
 2. Since loading external css is rendering blocking and the file style.css is fairly small, adding it inline saves time by removing an HTTP request.
 
- Included a minified version of style.css and included it in index.html.
+ Included a minified version of style.css and included it in index.html. Also, added media query to loading of print.css file.
 
 3. The file pizzeria.jpg was too large and took considerable time to load.
 
@@ -57,7 +73,7 @@ Include a README.md file (this file) that details all steps required to successf
 
  While the python SimpleHTTPServer does not seem to provide caching and gzip, my brainydesigns.net apache server does.
 
-6. Installing the production build of the project at http://brainydesigns.net/perf gives index.html scores of 100/100 for both Mobile and Desktop.
+6. Installing the production build of the project at http://brainydesigns.net/perf gives almost perfect index.html scores for both Mobile and Desktop.
 
 ### Changes to Achieve 60fps
 
@@ -71,7 +87,7 @@ Include a README.md file (this file) that details all steps required to successf
   3. Used Paul Lewis' method for 'Debouncing Scroll Events' by adding functions onScroll(), requestTick(), and requestAnimationFrame().
 
 
- 3. After JavaScript optimization, paint times according to DevTools was still a major problem. According to Paul Lewis, "Obviously if you have things moving as you scroll, like in a parallax site [or, in this case, sliding pizzas], then you're potentially damaging a large area, possibly across multiple layers, and this can result in a lot of expensive paint work.[5]" 
+ 3. After JavaScript optimization, paint times according to DevTools was still a major problem. According to Paul Lewis, "Obviously if you have things moving as you scroll, like in a parallax site [or, in this case, sliding pizzas], then you're potentially damaging a large area, possibly across multiple layers, and this can result in a lot of expensive paint work.[5]"
 
  Added lines to the mover class in the css file to reduce repaint times.
 
@@ -87,6 +103,10 @@ Include a README.md file (this file) that details all steps required to successf
   z-index: -1;
 }
 ```
+
+## Changes to Resize Menu Pizzas
+
+DOM document queries are very costly and care should be taken to eliminate or reduce these calls, especially within 'for-loops'. By using percentages for the css style widths of the pizzas and by using globals, the logic of code was significantly simplified.
 
 ## Resources
 
