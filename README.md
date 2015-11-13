@@ -71,29 +71,34 @@ Include a README.md file (this file) that details all steps required to successf
   3. Used Paul Lewis' method for 'Debouncing Scroll Events' by adding functions onScroll(), requestTick(), and requestAnimationFrame().
 
 
- 3. After JavaScript optimization, paint times according to DevTools was still a major problem. According to Paul Lewis, "Obviously if you have things moving as you scroll, like in a parallax site [or, in this case, sliding pizzas], then you're potentially damaging a large area, possibly across multiple layers, and this can result in a lot of expensive paint work.[5]"
-
- And David Walsh suggests, "The use of translate3d pushes CSS animations into hardware acceleration.[6]"
+ 3. After JavaScript optimization, paint times according to DevTools was still a major problem. According to Paul Lewis, "Obviously if you have things moving as you scroll, like in a parallax site [or, in this case, sliding pizzas], then you're potentially damaging a large area, possibly across multiple layers, and this can result in a lot of expensive paint work.[5]" 
 
  Added lines to the mover class in the css file to reduce repaint times.
 
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-transform: translate3d(0, 0, 0);
-      -ms-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
+```
+.mover {
+  position: fixed;
+  width: 256px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: -1;
+}
+```
 
 ## Resources
 
   1. "Effective Optimizations For 60 FPS" by Mark Nguyen
         https://goo.gl/YnA8nS
 
-  2. "High Performance JavaScript" by Nickolas C. Jakas (book)
+  2. "High Performance JavaScript" Book by Nickolas C. Jakas (4/2/2010)
 
   3. "Planning for Performance" by Scott Jehl (11/25/2014)
     http://alistapart.com/article/planning-for-performance
 
-  4. "Leaner, Meaner, Faster Animations with requestAnimationFrame" by Paul Lewis
+  4. "Leaner, Meaner, Faster Animations with requestAnimationFrame" by Paul Lewis (5/28/2012)
    http://www.html5rocks.com/en/tutorials/speed/animations/
 
   5. "Scrolling Performance" by Paul Lewis
