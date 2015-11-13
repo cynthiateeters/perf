@@ -12,13 +12,13 @@ To get a PageSpeed Insights score of 100/100, I have installed the production ve
 
  Please feel free to use and test the project from here.
 
- ### Project Build Environment
+ ## Project Build Environment
 
  Using Gulp to manage the builds, the project is separated into two different build branches: *development* and *production*. The difference is that the *production* directory contains minified html, css, and js files. The *development* directory has human-readable versions of these files.
 
- __PLEASE NOTE:__ To make building the project with Gulp, the original directory structure was simplified. There is no longer a view subdirectory. This means that the style sheet for pizza.html is now style2.css.
+ __PLEASE NOTE:__ To make building the project with Gulp, the original directory structure was simplified. There is no longer a views subdirectory. This means that the style sheet for pizza.html is now style2.css.
 
- Using the gulp-jshint, jshint-stylish, and gulp-csslint plugins, files revised to pass lint.
+ Using the gulp-jshint, jshint-stylish, and gulp-csslint plugins, js and css files were revised to pass lint.
 
 ## Goals
 
